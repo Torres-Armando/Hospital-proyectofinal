@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital General Vida y Salud — Catálogo de Servicios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar__inner">
+            <div class="brand">
+                <span class="brand__mark">+</span>
+                <div class="brand__text">
+                    <span class="brand__name">Vida y Salud</span>
+                    <span class="brand__tag">Hospital General</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#inicio">Inicio</a>
+                <a href="#catalogo">Servicios</a>
+                <a href="#agregar">Agregar servicio</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero__inner">
+            <p class="hero__eyebrow">Atención médica integral</p>
+            <h1 class="hero__title">Cuidamos tu salud con tecnología y calidez humana</h1>
+            <p class="hero__lead">
+                Consulta nuestro catálogo de servicios médicos, sus precios y disponibilidad.
+                Administra el catálogo agregando, editando o eliminando servicios desde esta misma página.
+            </p>
+            <a href="#catalogo" class="hero__cta">Ver catálogo</a>
+        </div>
+        <div class="hero__pulse" aria-hidden="true">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="none">
+                <polyline points="0,60 120,60 150,20 180,100 210,60 600,60" />
+            </svg>
+        </div>
+    </section>
+
+    <main class="contenedor">
+
+        <section class="panel" id="catalogo">
+            <div class="panel__head">
+                <div>
+                    <p class="panel__eyebrow">Catálogo</p>
+                    <h2 class="panel__title">Servicios disponibles</h2>
+                </div>
+                <div class="filtro">
+                    <label for="filtro-categoria">Filtrar por categoría</label>
+                    <select id="filtro-categoria">
+                        <option value="todas">Todas las categorías</option>
+                        <option value="Consulta">Consulta</option>
+                        <option value="Urgencias">Urgencias</option>
+                        <option value="Laboratorio">Laboratorio</option>
+                        <option value="Imagenología">Imagenología</option>
+                        <option value="Hospitalización">Hospitalización</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="estado-carga" class="estado">Cargando servicios…</div>
+            <div id="estado-vacio" class="estado estado--oculto">
+                Aún no hay servicios registrados. Agrega el primero desde el formulario de abajo.
+            </div>
+
+            <div id="lista-servicios" class="grid"></div>
+        </section>
+
+        <section class="panel panel--formulario" id="agregar">
+            <div class="panel__head">
+                <div>
+                    <p class="panel__eyebrow" id="form-eyebrow">Administración</p>
+                    <h2 class="panel__title" id="form-titulo">Agregar nuevo servicio</h2>
+                </div>
+            </div>
+
+            <form id="form-servicio" class="formulario">
+                <input type="hidden" id="servicio-id" value="">
+
+                <div class="campo">
+                    <label for="nombre">Nombre del servicio</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Consulta de Cardiología" required>
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="Consulta">Consulta</option>
+                        <option value="Urgencias">Urgencias</option>
+                        <option value="Laboratorio">Laboratorio</option>
+                        <option value="Imagenología">Imagenología</option>
+                        <option value="Hospitalización">Hospitalización</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="campo campo--ancho">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="3" placeholder="Describe brevemente en qué consiste el servicio…"></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="precio">Precio (MXN)</label>
+                    <input type="number" id="precio" name="precio" min="0" step="0.01" placeholder="Ej. 350" required>
+                </div>
+
+                <div class="campo campo--check">
+                    <label class="check">
+                        <input type="checkbox" id="disponible" name="disponible" checked>
+                        <span>Disponible actualmente</span>
+                    </label>
+                </div>
+
+                <div class="formulario__acciones">
+                    <button type="submit" id="btn-guardar" class="btn btn--primario">Agregar servicio</button>
+                    <button type="button" id="btn-cancelar" class="btn btn--secundario btn--oculto">Cancelar edición</button>
+                </div>
+
+                <p id="form-mensaje" class="form-mensaje"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__col">
+                <span class="brand__mark brand__mark--sm">+</span>
+                <p>Hospital General "Vida y Salud"<br>Atención médica para toda la familia.</p>
+            </div>
+            <div class="footer__col footer__credit">
+                <p><strong>Desarrollador:</strong> Torres Armando</p>
+                <p><strong>Control:</strong> 24308051280809 · Semestre 4° - J</p>
+                <p><strong>Especialidad:</strong> Programación</p>
+                <p><em>CETIS / CBTIS</em></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Plantilla para tarjeta de servicio -->
+    <template id="plantilla-tarjeta">
+        <article class="tarjeta">
+            <div class="tarjeta__head">
+                <span class="tarjeta__categoria"></span>
+                <span class="tarjeta__estado"></span>
+            </div>
+            <h3 class="tarjeta__nombre"></h3>
+            <p class="tarjeta__descripcion"></p>
+            <p class="tarjeta__precio"></p>
+            <div class="tarjeta__acciones">
+                <button class="btn btn--editar" type="button">Editar</button>
+                <button class="btn btn--eliminar" type="button">Eliminar</button>
+            </div>
+        </article>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
